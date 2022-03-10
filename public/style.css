@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,700;0,800;1,600&display=swap");
+
+.text-nunito {
+    font-family: Nunito;
+}
+
+.bg-dhealth {
+    background-color: #c6dde9 !important;
+}
+
+.dx-pager .dx-page-sizes .dx-selection,
+.dx-pager .dx-pages .dx-selection {
+    cursor: inherit;
+    text-shadow: none;
+    color: #fff !important;
+    border-color: transparent;
+    border-radius: 50px !important;
+    background-color: #245992 !important;
+}
