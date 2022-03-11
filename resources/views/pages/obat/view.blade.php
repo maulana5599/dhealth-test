@@ -72,6 +72,7 @@
             pager: {
                 showPageSizeSelector: true,
                 allowedPageSizes: [8, 12, 20],
+                showInfo: true,
             },
             width: "100%",
             columns: [

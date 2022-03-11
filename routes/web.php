@@ -22,8 +22,13 @@ Route::get('/', function () {
 
 
 Route::prefix('dhealth')->group( function () {
+    
+    //Master obat
     Route::get('obat', [MasterObatController::class, 'index'])->name('MasterObat');
     Route::get('data_obat', [MasterObatController::class, 'DataObat'])->name('DataObat');
+
+    // Master Signa
     Route::get('signa', [MasterSignaController::class, 'index'])->name('MasterSigna');
+    Route::get('data_signa', [MasterSignaController::class, 'DataSigna'])->name('DataSigna');
 
 });

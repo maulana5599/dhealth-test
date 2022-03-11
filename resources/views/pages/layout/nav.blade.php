@@ -16,14 +16,14 @@
               Master Obat
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="{{route('MasterObat')}}">Action</a></li>
               <li><a class="dropdown-item" href="#">Another action</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Master Signa</a>
+            <a class="nav-link" href="{{route('MasterSigna')}}">Master Signa</a>
           </li>
           <li class="nav-item">
             <a class="nav-link">Transaksi Pembelian</a>

@@ -4,18 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\MasterSigna;
 use Illuminate\Http\Request;
-
+use Helper;
 class MasterSignaController extends Controller
 {
 
     public function __construct(){
 
         $this->MasterSigna = new MasterSigna();
+        $this->Helper = new Helper();
     }
  
     public function index()
     {
-        $data = $this->MasterSigna->FindAll();
-        return view('pages.signa.view', compact('data'));
+        return view('pages.signa.view');
+    }
+
+    public function DataSigna(Request $request)
+    {
+         $data  = $this->MasterSigna->FindAll($request->skip, $request->take);
+         $count = $this->MasterSigna->CountAll();
+         $data = array(
+            'status'    => $this->Helper->httpStatusOk(),
+            'data'      => $data,
+            'count'     => $count,
+        );
+        return response()->json($data);
     }
 }

@@ -9,16 +9,25 @@ class MasterSigna extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['*'];
+    protected $table ="signa_m";
 
-    public function FindAll()
+    public function FindAll($skip, $take)
     {
-       $data = MasterSigna::get();
-       return $data;
+       $query = MasterSigna::skip($skip)->take($take)->get();
+       return $query;
     }
 
     public function FindById($id)
     {
-        $data = MasterSigna::findById($id);
-        return $data;
+        $query = MasterSigna::findById($id);
+        return $query;
+    }
+
+
+    public function CountAll()
+    {
+        $query = MasterSigna::count();
+        return $query;
     }
 }

@@ -22,15 +22,13 @@ class MasterObatController extends Controller
 
     public function DataObat(Request $request)
     {
-        $data = $this->MasterObat->FindAll($request->skip, $request->take);
+        $data  = $this->MasterObat->FindAll($request->skip, $request->take);
         $count = $this->MasterObat->CountAll();
 
         $data = array(
-
             'status'    => $this->Helper->httpStatusOk(),
             'data'      => $data,
             'count'     => $count,
-            
         );
 
         return response()->json($data);
