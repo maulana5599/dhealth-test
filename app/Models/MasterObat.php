@@ -45,9 +45,9 @@ class MasterObat extends Model
         return $res;
     }
 
-    public function FindById($id)
+    public function FindById($id, $field)
     {
-        $query = MasterObat::find($id);
+        $query = MasterObat::where('obatalkes_id', $id)->select($field)->first();
         return $query;
     }
 

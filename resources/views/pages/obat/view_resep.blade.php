@@ -1,11 +1,15 @@
 @extends('pages.layout.header')
 @section('content')
-<div class="col-12">
-    <div id="load_html"></div>
-    <div class="loadPanel"></div>
-    <div id="tabpanel"></div>
+<div class="row">
+    <div class="col-12">
+        <div id="load_html"></div>
+        <div class="loadPanel"></div>
+        <div id="tabpanel"></div>
+    </div>
+    <div class="col-12">
+        <div id="gridResep" class="mt-2 mb-5"></div>
+    </div>    
 </div>
-
 <script>
     $(function(){
 
@@ -50,15 +54,112 @@
         ];
         const tabPanel = $('#tabpanel').dxTabPanel({
             height: "100%",
-            elementAttr: {
-                class: "mb-5"
-            },
             items: tabs,
             selectedIndex: 0,
             loop: false,
             animationEnabled: true,
             swipeEnabled: true,
+            elementAttr: {
+                class:"mb-2"
+            }
         }).dxTabPanel('instance');
+
+
+        function isNotEmpty(value) {
+            return value !== undefined && value !== null && value !== '';
+        }
+
+        const store = new DevExpress.data.CustomStore({
+            key: 'id',
+            loadMode:'raw',
+            load(loadOptions) {
+            const deferred = $.Deferred();
+            const args = {};
+
+            [
+                'skip',
+                'take',
+                'requireTotalCount',
+                'requireGroupCount',
+                'sort',
+                'filter',
+                'totalSummary',
+                'group',
+                'groupSummary',
+            ].forEach((i) => {
+                if (i in loadOptions && isNotEmpty(loadOptions[i])) {
+                args[i] = JSON.stringify(loadOptions[i]);
+                }
+            });
+            $.ajax({
+                url: "{{route('DataResep')}}",
+                dataType: 'json',
+                data: args,
+                success(result) {
+                    deferred.resolve(result.data, {
+                        totalCount: result.count,
+                    });
+                },
+                error() {
+                    deferred.reject('Data Loading Error');
+                },
+                timeout: 5000,
+            });
+
+            return deferred.promise();
+            },
+        });
+
+        const gridView = $('#gridResep').dxDataGrid({
+            dataSource: store,
+            showBorders: true,
+            remoteOperations: true,
+            paging: {
+                pageSize: 12,
+            },
+            editing: {
+                allowEditing: false,
+                allowDeleting: false,
+                allowUpdating: false,
+                allowAdding: false,
+                useIcons: false,
+            },
+            pager: {
+                showPageSizeSelector: true,
+                allowedPageSizes: [8, 12, 20],
+                showInfo: true,
+            },
+            width: "100%",
+            height: "500px",
+            columns: [
+                {
+                    dataField: 'id',
+                    caption: 'number',
+                    visible: false,
+                }, 
+                {
+                    dataField: 'nama_obat',
+                    caption: 'Nama Obat',
+                    width: 300,
+                }, 
+                {
+                    dataField: 'jumlah',
+                    caption: 'Jumlah Obat',
+                    width: 400,
+                },
+                {
+                    dataField: 'nama_signa',
+                    caption: 'Nama Obat',
+                    width: 400,
+                },
+                {
+                    dataField: 'created',
+                    caption: "Tanggal dibuat",
+                    width: 200,
+                }
+            
+            ],
+        }).dxDataGrid('instance');
 
 
         function loadPage(tab, dom) {

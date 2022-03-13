@@ -17,4 +17,8 @@ class TransaksiJumlah extends Model
         TransaksiJumlah::create($data);
     }
 
+    public function resep()
+    {
+        return $this->hasOne(TransaksiResep::class, 'id', 'id_resep');
+    }
 }

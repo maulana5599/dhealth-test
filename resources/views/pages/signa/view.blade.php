@@ -17,6 +17,7 @@
 
         const store = new DevExpress.data.CustomStore({
             key: 'signa_id',
+            loadMode:'raw',
             load(loadOptions) {
             const deferred = $.Deferred();
             const args = {};

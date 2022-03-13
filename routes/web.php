@@ -3,6 +3,7 @@
 use App\Http\Controllers\MasterObatController;
 use App\Http\Controllers\MasterSignaController;
 use App\Http\Controllers\TransaksiResepController;
+use App\Models\TransaksiJumlah;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,5 +41,6 @@ Route::prefix('dhealth')->group( function () {
     Route::get('page/{page}', [TransaksiResepController::class, 'GetPage'])->name('ViewPage');
     Route::post('resep', [TransaksiResepController::class, 'save'])->name('SimpanResep');
     Route::post('resep-non', [TransaksiResepController::class, 'SaveNonRacikan'])->name('SimpanResepNon');
+    Route::get('data_resep', [TransaksiResepController::class, 'DataResep'])->name('DataResep');
 
 });

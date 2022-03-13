@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MasterObat;
+use App\Models\MasterSigna;
 use App\Models\TransaksiJumlah;
 use App\Models\TransaksiResep;
 use Helper;
@@ -108,6 +110,32 @@ class TransaksiResepController extends Controller
             DB::rollBack();
             return response()->json(array('status' => 500, 'message' => $th->getMessage()));
         }
+    }
+
+
+    public function DataResep(Request $request)
+    {
+        $data = TransaksiJumlah::with('resep')->get();
+
+         
+        $res = array();
+        foreach ($data as $key => $value){
+
+            $JenisObat = new MasterObat();
+            $field     = ['obatalkes_nama'];
+            $GetJenisObat = $JenisObat->FindById($value->id_obat, $field);
+
+            array_push($res, array(
+                'id'         => $value->id,
+                'nama_resep' => $value->resep->nama_resep,
+                'nama_obat'  => $GetJenisObat->obatalkes_nama,
+                'nama_signa' => $value->resep->signa,
+                'jumlah'     => $value->qty,
+                'created'    => $value->created_at
+            ));
+        }
+        return response()->json(array('status' => 200, 'data' => $res, 'count' => count($res)));
+        
     }
 
 
