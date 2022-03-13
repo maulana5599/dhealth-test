@@ -10,3 +10,5 @@ Langkah - langkah instalasi development server
 6. lakukan php artisan serve untuk menjalan development server.
 
 Framework LARAVE 8, PHP 7.4
+
+Note: Jangan lupa setting ENV, karena setiap database mempunyai username dan kata sandi yang berbeda beda.
