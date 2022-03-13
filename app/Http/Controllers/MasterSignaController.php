@@ -30,4 +30,14 @@ class MasterSignaController extends Controller
         );
         return response()->json($data);
     }
+
+    public function AllSigna()
+    {
+        $data  = $this->MasterSigna->AllSigna();
+        $data  = array(
+            'status'    => $this->Helper->httpStatusOk(),
+            'data'      => $data,
+        );
+        return response()->json($data);
+    }
 }

@@ -30,4 +30,11 @@ class MasterSigna extends Model
         $query = MasterSigna::count();
         return $query;
     }
+
+
+    public function AllSigna()
+    {
+        $query = MasterSigna::get();
+        return $query;
+    }
 }

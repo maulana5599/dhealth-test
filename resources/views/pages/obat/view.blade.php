@@ -21,21 +21,26 @@
         const deferred = $.Deferred();
         const args = {};
 
-        [
-            'skip',
-            'take',
-            'requireTotalCount',
-            'requireGroupCount',
-            'sort',
-            'filter',
-            'totalSummary',
-            'group',
-            'groupSummary',
-        ].forEach((i) => {
-            if (i in loadOptions && isNotEmpty(loadOptions[i])) {
-            args[i] = JSON.stringify(loadOptions[i]);
-            }
-        });
+        if (loadOptions.sort) {
+            args.orderby = loadOptions.sort[0].selector;
+            if (loadOptions.sort[0].desc)
+                args.orderby += " DESC";
+            else
+                args.orderby += " ASC";
+        }
+
+        if (loadOptions.dataField) {
+            args.dataField = loadOptions.dataField;
+        }
+
+        args.skip = loadOptions.skip;
+        args.take = loadOptions.take;
+
+        if (loadOptions.filter) {
+            args.filterValue = loadOptions.filter['filterValue'];
+            args.filterColumn = loadOptions.filter[0];
+        }
+
         $.ajax({
             url: "{{route('DataObat')}}",
             dataType: 'json',
@@ -75,6 +80,11 @@
                 showInfo: true,
             },
             width: "100%",
+            searchPanel: {
+                visible: true,
+                width: 240,
+                placeholder: 'Search...',
+            },
             columns: [
                 {
                     dataField: 'obatalkes_id',

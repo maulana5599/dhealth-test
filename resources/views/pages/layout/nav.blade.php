@@ -9,24 +9,24 @@
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">HOME</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Master Obat
+              MASTER OBAT
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="{{route('MasterObat')}}">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="{{route('MasterObat')}}">Data obat</a></li>
+              <li><a class="dropdown-item" href="#">Racikan obat</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('MasterSigna')}}">Master Signa</a>
+            <a class="nav-link" href="{{route('MasterSigna')}}">MASTER SIGNA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Transaksi Pembelian</a>
+            <a class="nav-link" href="{{route('TransaksiResep')}}">TRANSAKSI RESEP</a>
           </li>
         </ul>
       </div>
